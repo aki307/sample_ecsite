@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,8 +15,45 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-const app = new Vue({
-    el: '#app'
+// const app = new Vue({
+//     el: '#app'
+// });
+
+// ハンバーガーメニュー
+$(document).ready(function(){
+    $("#sp_navi_toggle").click(function(){
+        $(".sp_navi_toggle").slideToggle();
+    });
 });
+
+// カラーセル
+// import {tns} from 'tiny-slider';
+
+import { tns } from "../../../node_modules/tiny-slider/src/tiny-slider"
+
+if($('.my-slider').length){
+var slider = tns({
+    container: '.my-slider',
+    items: 1,
+    slideBy: 'page',
+    autoplay: true
+});
+}
+// ページトップにスクロールする
+$(document).ready(function(){
+    $('#pagetop_screen').on('click', (e) => {
+        $('html, body').animate({ scrollTop: 0 }, 600);
+    });
+});
+
+// 商品の写真のスライドショー
+$(window).ready(function(){
+   $("#list_img img").click(function(){
+       var img_src = $(this).attr("src");
+       $("#display_img img").attr("src", img_src);
+   });
+});
+
+

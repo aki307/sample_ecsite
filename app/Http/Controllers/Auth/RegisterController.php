@@ -51,7 +51,7 @@ class RegisterController extends Controller
             'name_kanji' => 'required|string|max:32',
             'name_kana' => 'required|string|max:32',
             'email' => 'required|string|email|max:128|unique:users',
-            'password' => 'required|string|min:6|max:32|confirmed',
+            'password' => 'required|string|min:6|max:255|confirmed',
         ]);
     }
 

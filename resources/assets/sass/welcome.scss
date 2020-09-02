@@ -1,0 +1,1951 @@
+@charset "utf-8";
+
+@mixin fontsize($size: 24) {
+
+font-size: $size + px;
+
+font-size: ($size / 10) * 1rem;
+
+}
+
+p {
+  @include fontsize(16);
+}
+
+$ja_font : "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Verdana, "ＭＳ Ｐゴシック", sans-serif;
+$blue1 : #42b9d0;
+$gray_blue : #eaf2f4;
+$font-color:#887f69;
+$background_color:#f9f8f6;
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+html {
+
+font-size: 62.5%;
+background-color:$background_color;
+
+}
+body {
+  font-family: $ja_font;
+  // ****ヘッダー****
+  header{
+    // スマホ用
+    @media(max-width: 549px){
+      #title{
+        text-align:center;
+        margin-bottom:0;
+        a{
+          text-decoration:none;
+          color:#434343;
+          font-size:36px;
+        }
+      }
+      .pc_navi_li{
+        display:none;
+      }
+      .sp_navi{
+        .sp_navi_li{
+          text-align:center;
+          margin-bottom:0;
+          li{
+            display:inline-block;
+            margin:5px;
+            list-style:none;
+          }
+        }
+        .sp_navi_toggle{
+          list-style:none;
+          display:none;
+          background-color:#f24e69;
+          margin-bottom:0;
+          li{
+            margin:0;
+            padding:0;
+            border-bottom:1px solid #ffffff;
+            a{
+              color:#ffffff;
+              font-size: 14px;
+              text-decoration: none;
+              display:block;
+              padding:10px 8px;
+              
+            }
+          }
+        }
+      }
+    }
+    .pc_navi_li{
+      li{
+        display:inline-block;
+        margin:5px;
+        a{
+          color:#524c3e;
+          text-decoration:none;
+          font-weight:900;
+        }
+        a:hover{
+          color:#9d1a2d;
+        }
+      }
+    }
+    @media(min-width: 550px){
+      .sp_navi{
+        display:none;
+      }
+      #title{
+        a{
+          text-decoration:none;
+          color:#434343;
+          font-size:36px;
+          font-family:Unica;
+        }
+      }
+    }
+  }
+  // ****メインメニュー****
+  // 【カテゴリー欄】 [-NEW ITEMS-],[-POPULAR ITEMS-]および[-SHOPPING GUIDE-]部分
+  //  PC
+  @media(min-width:550px){
+    #category-box{
+      display:flex;
+      align-items:center;
+      margin-top:34px;
+    }
+    #category-box:before,
+    #category-box:after{
+      content: "";
+      flex-grow: 1;
+      height:1px;
+      display:block;
+      background-color:#e2ddd4;
+    }
+    #category-box:before{
+      margin-right:1rem;
+    }
+    #category-box:after{
+      margin-left: 1rem;
+    }
+    
+    
+  }
+  //スマホ
+  @media(max-width:549px){
+    #category-box {
+      margin-top:20px;
+      text-align:center;
+      img{
+      display:inline-block;
+      }
+    }
+  }
+  // 【商品欄】 NEW ITEMSおよびPOPULAR ITEMSの商品欄
+  // PC
+  @media(min-width:550px){
+    #items_box{
+      margin-top:20px;
+      display:flex;
+      flex-wrap:wrap;
+      background-color:#ffffff;
+      #item_box{
+        padding:0%;
+        padding-bottom:10px;
+        margin:0;
+        box-sizing:border-box;
+        width:33%;
+        border:solid 1px $background_color;
+        #item_picture{
+          padding-top:13px;
+          padding-left:1%;
+          img{
+            width:98%;
+            padding-left:1%;
+            padding-right:1%;
+            height:205px;
+          }
+        }
+        #item_title{
+          a{
+            color:black;
+            width:98%;
+            padding-left:1%;
+            padding-right:1%;
+            text-decoration:none;
+          }
+        }
+        #item_price{
+          a{
+            color:black;
+            width:98%;
+            padding-left:1%;
+            padding-right:1%;
+            text-decoration:none;
+          }
+        }
+      }
+    }
+  }
+  // スマホ
+  @media(max-width:549px){
+     #items_box{
+      margin-top:20px;
+      display:flex;
+      flex-wrap:wrap;
+      background-color:#ffffff;
+      #item_box{
+        padding:0%;
+        padding-bottom:10px;
+        margin:0;
+        box-sizing:border-box;
+        width:50%;
+        border:solid 1px $background_color;
+        #item_picture{
+          padding-top:13px;
+          padding-left:1%;
+          img{
+            width:98%;
+            padding-left:1%;
+            padding-right:1%;
+            height:200px;
+          }
+        }
+        #item_title{
+          a{
+            color:black;
+            width:98%;
+            padding-left:1%;
+            padding-right:1%;
+            text-decoration:none;
+          }
+        }
+        #item_price{
+          a{
+            color:black;
+            width:98%;
+            padding-left:1%;
+            padding-right:1%;
+            text-decoration:none;
+          }
+        }
+      }
+    }
+  }
+  // SHOPPING GUIDEの中身部分
+  @media(min-width:550px){
+    #shopping_guide-list-box{
+      background-color:#ffffff;
+      margin-top:20px;
+      display:flex;
+      flex-wrap:wrap;
+      #delivery-box{
+        box-sizing:border-box;
+        width:50%;
+        border-right:solid 5px $background_color;
+        h6{
+          margin-top:10px;
+          font-size:16px;
+          padding-left:5%;
+           color:#887f69;
+           font-weight:900;
+        }
+        img{
+          max-width:95%;
+          box-sizing:border-box;
+          padding-left:5%;
+        }
+        #how_to_deliver{
+          color:#887f69;
+        }
+        p{
+          padding-left:5%;
+        }
+      }
+      #payment-box{
+        width:50%;
+        h6{
+          padding-top:10px;
+          font-size:16px;
+          padding-left:5%;
+          color:#887f69;
+          font-weight:900;
+        }
+        img{
+          max-width:95%;
+          box-sizing:border-box;
+          padding-left:5%;
+        }
+        p{
+          padding-left:5%;
+           
+        }
+        #how_to_pay{
+          color:#887f69;
+        }
+      }
+    }
+  }
+  @media(max-width:549px){
+    #shopping_guide-list-box{
+      background-color:#ffffff;
+      margin-top:20px;
+      display:flex;
+      flex-wrap:wrap;
+      #delivery-box{
+        box-sizing:border-box;
+        width:100%;
+        border-bottom:solid 5px $background_color;
+        h6{
+          padding-left:6%;
+          padding-top:20px;
+           color:#887f69;
+           font-size:16px;
+           font-weight:900;
+        }
+        img{
+          padding-left:6%;
+        }
+        p{
+          padding-left:6%;
+        }
+        #how_to_deliver{
+          color:#887f69;;
+        }
+      }
+      #payment-box{
+        width:100%;
+        h6{
+          padding-left:6%;
+          padding-top:20px;
+           color:#887f69;
+           font-size:16px;
+           font-weight:900;
+        }
+        img{
+          padding-left:6%;
+          max-width:94%;
+        }
+        p{
+          padding-left:6%;
+        }
+        #how_to_pay{
+           color:#887f69;
+        }
+      }
+    }
+  }
+  // ****商品詳細****
+  @media(min-width:550px){
+    #product-box{
+      background-color:#ffffff;
+      padding-right:8%;
+      padding-left:8%;
+      // 商品名
+      #product_name-box{
+        border-bottom:solid 3px #e2ddd4;
+        h6{
+          font-size:19px;
+        }
+      }
+      // 商品の写真
+      #product_picture-box{
+        margin-top:0;
+        display:flex;
+      flex-wrap:wrap;
+        width:100%;
+        border-bottom:solid 3px #e2ddd4;
+        padding-bottom:0;
+        padding-top:10px;
+        height:417px;
+        #display_img{
+          width:70%;
+          box-sizing:border-box;
+          img{
+            height:407px;
+            width:100%;
+          }
+        }
+        #list_img{
+          width:30%;
+          box-sizing:border-box;
+          display:flex;
+          flex-wrap:wrap;
+          li{
+            list-style:none;
+            display:flex;
+            flex-wrap:wrap;
+            padding-left:6%;
+            margin-bottom:8px;
+            width:44%;
+            // box-sizing:border-box;
+            img{
+              width:100%;
+              cursor:pointer;
+              height:75px;
+              background-color:#f9f9f9;
+            }
+          }
+        }
+      }
+      // 価格、個数、「カートに加える」部分
+      #product_count_and_judge-box{
+        width:100%;
+        box-sizing:border-box;
+        display:flex;
+        border-bottom:solid 2px #e2ddd4;
+        padding:0;
+        margin:0;
+        #product_count-box{
+          width:57%;
+          
+          box-sizing:border-box;
+          padding:0;
+          margin:0;
+          
+          #product_price-box{
+            height:70px;
+            display:flex;
+            padding:0;
+            margin:0;
+            #product_price_image-box{
+              width:35%;
+              padding-top:25px;
+              img{
+                
+              }
+            }
+            #product_price_number-box{
+              width:65%;
+              padding-top:10px;
+              margin:0;
+              p{
+                max-width:100%;
+                box-sizing:border-box;
+                color:#f24e69;
+                .price_count{
+                 color:black;
+                }
+              }
+            }
+          }
+        }
+        #product_judge-box{
+          width:43%;
+          #add_to_cart_image-box{
+            padding-top:10px;
+            padding-left:10%;
+            img{
+              max-width:100%;
+              box-sizing:border-box;
+            }
+          }
+        }
+      }
+      // タイトル「商品説明」
+      #product_explanation-box{
+        padding-top:30px;
+        padding-bottom:0;
+        height:40px;
+        border-bottom:solid 2px #e2ddd4;
+        h6{
+          font-size:19px;
+          color:#887f69;
+          font-weight:600;
+        }
+      }
+      // 商品説明の中身
+      #product_detail_box{
+        margin-top:20px;
+        padding-bottom:80px;
+        p{
+          font-size:15px;
+        }
+      }
+    }
+  }
+  @media(max-width:549px){
+    #product-box{
+      background-color:#ffffff;
+      padding-left:3%;
+      padding-right:3%;
+      #product_name-box{
+        border-bottom:solid 1px #e2ddd4;
+      }
+      h6{
+        font-size:19px;
+      }
+      // 商品の写真
+      #product_picture-box{
+        margin-top:0;
+        display:flex;
+        flex-wrap:wrap;
+        width:100%;
+        border-bottom:solid 1px #e2ddd4;
+        padding-bottom:0px;
+        padding-top:10px;
+        height:638px;
+        #display_img{
+          width:100%;
+          box-sizing:border-box;
+          img{
+            height:450px;
+            width:99%;
+          }
+        }
+        #list_img{
+          width:100%;
+          box-sizing:border-box;
+          display:flex;
+          flex-wrap:wrap;
+          li{
+            list-style:none;
+            display:flex;
+            flex-wrap:wrap;
+            // padding-left:6%;
+            margin-bottom:1%;
+            width:19%;
+            margin-right:1%;
+            // box-sizing:border-box;
+            img{
+              width:100%;
+              cursor:pointer;
+              height:84px;
+              background-color:#f9f9f9;
+            }
+          }
+        }
+      }
+      // 価格、個数、「カートに加える」部分
+      #product_count_and_judge-box{
+        width:100%;
+        box-sizing:border-box;
+        // display:flex;
+        padding:0;
+        margin:0;
+        #product_count-box{
+          width:100%;
+          box-sizing:border-box;
+          padding:0;
+          margin:0;
+          border-bottom:solid 1px #e2ddd4;
+          
+          #product_price-box{
+            height:70px;
+            display:flex;
+            padding:0;
+            margin:0;
+            #product_price_image-box{
+              width:35%;
+              padding-top:25px;
+              img{
+                
+              }
+            }
+            #product_price_number-box{
+              width:65%;
+              padding-top:10px;
+              margin:0;
+              p{
+                width:100%;
+                box-sizing:border-box;
+                color:#f24e69;
+                .price_count{
+                 color:black;
+                }
+              }
+            }
+          }
+        }
+        #product_judge-box{
+          width:100%;
+          #add_to_cart_image-box{
+            padding-top:10px;
+            padding-left:20%;
+            width:76%;
+            img{
+              max-width:100%;
+              box-sizing:border-box;
+            }
+          }
+        }
+      }
+      // タイトル「商品説明」
+      #product_explanation-box{
+        padding-top:30px;
+        padding-bottom:0;
+        height:40px;
+        border-bottom:solid 2px #e2ddd4;
+        h6{
+          font-size:19px;
+          color:#887f69;
+          font-weight:600;
+        }
+      }
+      // 商品説明の中身
+      #product_detail_box{
+        margin-top:20px;
+        padding-bottom:66px;
+        p{
+          font-size:15px;
+        }
+      }
+    }
+  }
+  // ****商品検索結果ページ****
+      // BACKボタンおよびNEXTボタン
+      .search_progress-box{
+          margin: 1em 0;
+          width:100%;
+          box-sizing:border-box;
+          ul{
+            margin:0;
+            width:100%;
+            box-sizing:border-box;
+            .back{
+          width:19%;
+        }
+        .next{
+          width:19%;
+        }
+            li{
+              float:left;
+              list-style: none outside none;
+              margin-left: 2%;
+              width:10%;
+              text-align:center;
+              a{
+                background:none repeat scroll 0 0 #b0b0b0;
+                border-radius:3px;
+                color:#ffffff;
+                display:block;
+                padding-top:10px;
+                padding-bottom:10px;
+                text-decoration:none;
+                text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+              }
+              a:hover{
+                background-color:#444444;
+                color:#ffffff;
+                opacity: 0.8;
+                transition-duration: 500ms;
+                transition-property: all;
+                transition-timing-function: ease;
+              }
+            }
+            li:first-child{
+              margin-left:0;
+            }
+          .active{
+              background-color:#887f69;
+              border-radius:3px;
+              color:#ffffff;
+              cursor:not-allowed;
+              padding-top: 10px ;
+              padding-bottom: 10px;
+              width:10%;
+            }
+          }
+        }
+        .search_progress-box:after, .search_progress-box ul:after{
+          clear: both;
+          content: ".";
+          display: block;
+          height:0;
+          visibility: hidden;
+        }
+  // 【My Cartページ】カート内の各商品
+  @media(max-width:549px){
+    #sp_cart_navi{
+      margin-top:0;
+      padding:0;
+      margin-bottom:10px;
+      background-color:#ffffff;
+      width:100%;
+      box-sizing:border-box;
+      border:2px solid #887f69;
+      border-radius:5px;
+      p{
+        width:94%;
+        padding-left:3%;
+        padding-right:3%;
+        box-sizing:border-box;
+        color:#f24e69;
+        .price_count{
+          color:black;
+        }
+      }
+      #sp_cart_button-box{
+        width:94%;
+        margin-right:3%;
+        margin-left:3%;
+        
+        box-sizing:border-box;
+        #sp_cart_button{
+          width:100%;
+          text-align:center;
+          padding-top:3px;
+          box-sizing:border-box;
+          display:block;
+          text-decoration:none;
+          background-color:#9d1a2d;
+          color:#ffffff;
+          height:40px;
+          font-size:20px;
+          border-radius:5px;
+          margin-bottom:10px;
+        }
+        #sp_cart_button:hover{
+          background-color:#f24e69;
+        }
+      }
+    }
+    #my_cart_items_box{
+      width:100%;
+      background-color:#ffffff;
+      #my_cart_title_price{
+        padding-right:0;
+        border-bottom:1px solid #b0b0b0;
+        width:100%;
+        text-align:right;
+      }
+      #my_cart_item_box{
+        box-sizing:border-box;
+        display:flex;
+        flex-wrap:wrap;
+        width:100%;
+        border-bottom:1px solid #f9f8f6;
+        #item_picture{
+          width:25%;
+          box-sizing:border-box;
+          
+          
+          a{
+            width:100%;
+            box-sizing:border-box;
+            img{
+              width:100%;
+              box-sizing:border-box;
+              height:100px;
+            }
+          }
+        }
+        #my_cart_item_box{
+          width:50%;
+          padding-left:5%;
+          
+          #item_title{
+            width:100%;
+           
+            font-size:1.3em;
+            a{
+              color:black;
+              text-decoration: none;
+            }
+          }
+          #information1{
+            color:#9d1a2d;
+            width:100%;
+          }
+          
+          form{
+            display:none;
+          }
+        }
+        #my_cart_item_price{
+          width:25%;
+          p{
+            a{
+              float:right;
+              color:black;
+            }
+          }
+        }
+        #sp_item_number_form{
+          width:100%;
+          box-sizing:border-box;
+          form{
+            margin:0;
+            button{
+              
+              width:10%;
+              padding:0;
+              background-color:#887f69;
+              color:#ffffff;
+              font-size:18px;
+            }
+            input{
+              
+              width:20%;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:550px){
+    #sp_cart_navi{
+      display:none;
+    }
+    #my_cart_items_box{
+      width:100%;
+      background-color:#ffffff;
+      #my_cart_title_price{
+        padding-right:0;
+        border-bottom:1px solid #b0b0b0;
+        width:100%;
+        text-align:right;
+      }
+      #my_cart_item_box{
+        box-sizing:border-box;
+        display:flex;
+        flex-wrap:wrap;
+        width:100%;
+        border-bottom:1px solid #f9f8f6;
+        #item_picture{
+          width:25%;
+          box-sizing:border-box;
+          
+          a{
+            width:100%;
+            box-sizing:border-box;
+            img{
+              width:100%;
+              box-sizing:border-box;
+              height:100%;
+            }
+          }
+        }
+        #my_cart_item_box{
+          width:50%;
+          padding-left:5%;
+          
+          #item_title{
+            width:80%;
+           
+            font-size:1.3em;
+            a{
+              color:black;
+              text-decoration: none;
+            }
+          }
+          #information1{
+            color:#9d1a2d;
+            width:80%;
+          }
+          
+          form{
+            width:100%;
+            box-sizing:border-box;
+            label{
+              padding-top:7px;
+              display:inline;
+              
+            }
+            #item_number_select{
+              display:inline;
+              width:35px;
+              padding:0;
+              display:inline;
+            }
+            #item_number_describe{
+              padding: 0, 0, 0, 5 ;
+              width:50px;
+              display:none;
+            }
+            #item_number_button{
+              width:50px;
+              padding:0;
+              background-color:#887f69;
+              color:#ffffff;
+              display:none;
+            }
+          }
+        }
+        #my_cart_item_price{
+          width:25%;
+          p{
+            a{
+              float:right;
+              color:black;
+            }
+          }
+        }
+        #sp_item_number_form{
+          display:none;
+        }
+        
+      }
+    }
+  }
+  // 【注文履歴ページ】
+  @media(min-width:550px){
+    #sp_my_order-box{
+      display:none;
+    }
+    #my_orders-box{
+      box-sizing:border-box;
+      width:100%;
+      background-color:#ffffff;
+      margin-top:10px;
+      #pc_my_order-box{
+        width:100%;
+        box-sizing:border-box;
+        background-color:#ffffff;
+        border:solid 1px #e2ddd4;
+        border-radius:5px;
+      }
+      #my_order_information-box{
+        display:flex;
+        padding-top:5px;
+        padding-bottom:5px;
+        border-bottom:solid 1px #e2ddd4;
+        background-color:#f6f2eb;
+        
+        #my_order_day{
+          padding-left:2%;
+          width:20%;
+          p{
+            color:#887f69;
+            font-size:12px;
+          }
+          #my_order_information{
+            color:#887f69;
+            font-size:14px;
+          }
+        }
+        #my_order_total_money{
+          width:15%;
+          p{
+            color:#887f69;
+            font-size:12px;
+          }
+           #my_order_information{
+            color:#887f69;
+            font-size:14px;
+          }
+        }
+        #my_order_shipping{
+          width:50%;
+          p{
+            color:#887f69;
+            font-size:12px;
+          }
+           #my_order_information{
+            color:#887f69;
+            font-size:14px;
+          }
+        }
+        #my_order_detail_link{
+          width:11%;
+          padding-right:2%;
+          
+          a{
+            text-decoration:none;
+          }
+        }
+      }
+      #my_order_items-box{
+        width:100%;
+        box-sizing:border-box;
+        #my_order_item-box{
+          display:flex;
+          border-bottom:solid 1px #e2ddd4;
+          #my_order_item_picture{
+            padding:2% 0% 2% 2%;
+            width:25%;
+            position:relative;
+            a{
+              img{
+                box-sizing:border-box;
+                width:100%;
+                height:100px;
+              }
+            }
+            p{
+            
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            border:solid 1px #e2ddd4;
+            background-color:#f6f2eb;
+            color:#887f69;
+            font-weight:800;
+            text-align:center;
+            line-height: 250%;
+            position:absolute;
+            margin:0;
+            top:80%;
+            right:0%;
+            padding:0;
+          }
+          }
+          #my_order_item_information{
+            width:65%;
+            padding:2% 0% 0% 2%;
+            #buy_again_button{
+              display: inline-block;
+              border-style: solid;
+              background-color: #9d1a2d;
+              border-width:1px;
+              border-color:#9d1a2d;
+              text-align:center;
+              a{
+              text-decoration: none;
+              color: #ffffff;
+              font-size:20px;
+              padding-top:5px;
+              display:inline-block;
+              text-align:left;
+              }
+              border-radius:5px;
+              width:120px;
+              height:40px;
+            }
+            #buy_again_button:hover{
+              background-color:#f24e69;
+            }
+          }
+          #my_order_item_price{
+            width:14%;
+            padding:2% 2% 0% 2%;
+          }
+        }
+      }
+    }
+  }
+  @media(max-width:549px){
+    #pc_my_order-box{
+      display:none;
+    }
+    #my_orders-box{
+      background-color:#ffffff;
+      width:100%;
+      box-sizing:border-box;
+      #sp_my_order_item-box{
+        width:100%;
+        box-sizing:border-box;
+        display:flex;
+        border:solid 1px $background_color;
+        #sp_my_order_item_picture{
+          width:30%;
+          box-sizing:border-box;
+          position:relative;
+          a{
+            img{
+              width:100%;
+              height:100px;
+              box-sizing:border-box;
+            }
+          }
+          p{
+            
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            border:solid 1px #e2ddd4;
+            background-color:#f6f2eb;
+            color:#887f69;
+            font-weight:800;
+            text-align:center;
+            line-height: 200%;
+            position:absolute;
+            margin:0;
+            top:80%;
+            right:0%;
+            padding:0;
+          }
+        }
+        #sp_my_order_item_information{
+          width:60%;
+          h5{
+            padding-left:5%;
+            width:95%;
+          }
+          p{
+              padding-left:5%;
+              width:95%;
+              color:#887f69;
+              font-size:13px;
+          }
+        }
+        #sp_my_order_item_detail_link{
+          width:10%;
+          box-sizing:border-box;
+          padding-top:5%;
+          height:95%;
+          a{
+            
+          }
+        }
+      }
+    }
+  }
+  // 【注文の詳細ページ】
+  @media(min-width:550px){
+    #sp_my_orders_detail-box{
+      display:none;
+    }
+    #pc_my_orders_detail-box{
+      width:100%;
+      box-sizing:border-box;
+      background-color:$background_color;
+      #my_orders_detail_title{
+        background-color:#ffffff;
+      }
+      #pc_my_order_detail_information{
+        width:100%;
+        box-sizing:border-box;
+        display:flex;
+        background-color:#ffffff;
+        border:1px solid #887f69;
+        border-radius:5px;
+        #pc_my_address{
+          padding-top:5px;
+          padding-bottom:5px;
+          padding-left:2%;
+          width:38%;
+          box-sizing:border-box;
+          #title{
+            font-size:14px;
+            font-weight:600;
+            margin-bottom:5px;
+          }
+          p{
+            font-size:14px;
+            margin-bottom:0px;
+            padding:0;
+          }
+        }
+        #pc_my_payment{
+          padding-top:5px;
+          padding-left:2%;
+            width:28%;
+          box-sizing:border-box;
+          #title{
+            font-size:14px;
+            font-weight:600;
+            margin-bottom:5px;
+          }
+          p{
+            font-size:14px;
+          }
+        }
+        #payment{
+          padding-top:5px;
+          width:36%;
+          padding-left:2%;
+          padding-right:2%;
+          padding-bottom:5px;
+          box-sizing:border-box;
+          #title{
+            font-weight:600;
+            margin-bottom:5px;
+          }
+          p{
+            font-size:14px;
+          }
+          #price_number{
+            float:right;
+            font-weight:600;
+          }
+          #total_price{
+            font-weight:600;
+          }
+        }
+      }
+    }
+  }
+  @media(max-width:549px){
+    #pc_my_orders_detail-box{
+      display:none;
+    }
+    #sp_my_orders_detail-box{
+      background-color:#ffffff;
+      #my_orders_detail_title{
+        padding-left:2%;
+        padding-top:10px;
+        padding-bottom:0;
+        margin:0;
+        h3{
+          margin:0;
+        }
+      }
+      #sp_my_order_abstract{
+        margin-top:5px;
+        border:1px solid #e2ddd4;
+        border-radius:10px;
+        width:100%;
+        box-sizing:border-box;
+        display:flex;
+        #sp_my_order_abstract_sub_title{
+          padding-top:5px;
+          padding-bottom:5px;
+          margin-left:2%;
+          width:38%;
+          box-sizing:border-box
+        }
+        #sp_my_order_abstract_my_information{
+          width:60%;
+          box-sizing:border-box;
+          padding-top:5px;
+          padding-bottom:5px;
+        }
+      }
+      #sp_my_orders_detail_items_title{
+        margin:0px;
+        h4{
+          padding-left:2%;
+          margin:0;
+          padding-top:5px;
+          padding-bottom:5px;
+          color:#887f69;
+          background-color:#f9f8f6;
+        }
+      }
+      #sp_my_order-box{
+        margin-top:0;
+        width:100%;
+        box-sizing:border-box;
+        border-top:1px solid #e2ddd4;
+        border-left:1px solid #e2ddd4;
+        border-right:1px solid #e2ddd4;
+        border-radius:10px;
+        #sp_my_order_item-box{
+          border-bottom:1px solid #e2ddd4;
+          border-radius:10px;
+          width:100%;
+          box-sizing:border-box;
+          display:flex;
+          #sp_my_order_item_picture{
+            padding-left:2%;
+            padding-top:10px;
+            width:25%;
+            a{
+              img{
+                width:100%;
+                box-sizing:border-box;
+              }
+            }
+          }
+          #sp_my_order_item_information{
+            padding-left:2%;
+            padding-top:10px;
+            width:50%;
+          }
+          #sp_my_order_item_price_box{
+            width:15%;
+            padding-right:2%;
+            padding-top:10px;
+            text-align:right;
+          }
+        }
+      }
+      #sp_my_orders_detail_payment_information-box{
+        border:1px solid #e2ddd4;
+        border-radius:10px;
+        width:100%;
+        box-sizing:border-box;
+        #sp_my_how_to_pay{
+          padding-left:2%;
+          padding-right:2%;
+          padding-top:10px;
+          padding-bottom:10px;
+          border-bottom:1px solid #e2ddd4;
+          h5{
+            margin:0;
+            font-weight:700;
+          }
+        }
+        #sp_my_payment_address{
+          padding-left:2%;
+          padding-right:2%;
+          padding-top:10px;
+          padding-bottom:10px;
+          
+          h5{
+            margin:0;
+            font-weight:700;
+          }
+        }
+      }
+      #sp_my_payment_address2{
+          padding-left:2%;
+          padding-right:2%;
+          padding-top:10px;
+          padding-bottom:10px;
+          border:solid 1px #e2ddd4;
+          border-radius:10px;
+          h5{
+            margin:0;
+            font-weight:700;
+          }
+      }
+      #sp_my_orders_detail_receipt{
+        width:100%;
+        box-sizing:border-box;
+        padding-left:2%;
+        padding-right:2%;
+        padding-top:10px;
+        padding-bottom:10px;
+        border:solid 1px #e2ddd4;
+          border-radius:10px;
+        #receipt_number{
+          float:right;
+        }
+        #receipt_number2{
+          color:#9d1a2d;
+          font-weight:600;
+          float:right;
+        }
+        h5{
+          margin:0;
+        }
+      }
+    }
+  }
+  // 【出品一覧ページ】
+  @media(min-width:550px){
+    #sp_my_shipping-box{
+      display:none;
+    }
+    #my_shippings-box{
+      box-sizing:border-box;
+      width:100%;
+      background-color:#ffffff;
+      margin-top:10px;
+      #pc_my_shipping-box{
+        width:100%;
+        box-sizing:border-box;
+        background-color:#ffffff;
+        border:solid 1px #e2ddd4;
+        border-radius:5px;
+      }
+      #my_shipping_items-box{
+        width:100%;
+        box-sizing:border-box;
+        #my_shipping_item-box{
+          display:flex;
+          border-bottom:solid 1px #e2ddd4;
+          #my_shipping_item_picture{
+            padding:2% 0% 2% 2%;
+            width:25%;
+            box-sizing:border-box;
+            // position:relative;
+            a{
+              img{
+                box-sizing:border-box;
+                width:100%;
+                height:100px;
+                
+              }
+            }
+          }
+          #my_shipping_item_information{
+            width:50%;
+            padding:2% 0% 0% 2%;
+          }
+          #my_shipping_button-box{
+            width:29%;
+            
+            padding:2% 2% 0% 2%;
+            #shipping_button{
+              margin-top:5px;
+              display: inline-block;
+              background-color: #887f69;
+              border-width:1px;
+              
+              text-align:center;
+              width:100%;
+              float:right;
+              position:relative;
+              a{
+              text-decoration: none;
+              color: #ffffff;
+              font-size:16px;
+              padding-top:8px;
+              display:inline-block;
+              text-align:center;
+              
+              }
+              border-radius:5px;
+              min-width:120px;
+              width:100%;
+              height:40px;
+            }
+             #shipping_button:hover{
+              background-color:#9d1a2d;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(max-width:549px){
+      #pc_my_shipping-box{
+        display:none;
+      }
+      #sp_my_shipping-box{
+        margin-top:0;
+        width:100%;
+        box-sizing:border-box;
+        border-top:1px solid #e2ddd4;
+        border-left:1px solid #e2ddd4;
+        border-right:1px solid #e2ddd4;
+        border-radius:10px;
+        #sp_my_shipping_item-box{
+          border-bottom:1px solid #e2ddd4;
+          border-radius:10px;
+          width:100%;
+          box-sizing:border-box;
+          display:flex;
+          #sp_my_shipping_item_picture{
+            padding-left:2%;
+            padding-top:10px;
+            width:25%;
+            box-sizing:border-box;
+            a{
+              img{
+                width:100%;
+                box-sizing:border-box;
+                height:100px;
+              }
+            }
+          }
+          #sp_my_shipping_item_information{
+            padding-left:2%;
+            padding-top:10px;
+            width:60%;
+          }
+          #sp_my_shipping_item_detail_link{
+            padding-top:20px;
+          }
+          #sp_my_shipping_item_price_box{
+            width:15%;
+            padding-right:2%;
+            padding-top:10px;
+            text-align:right;
+          }
+        }
+      }
+    }
+  // 【各商品の注文の表示】
+  @media(min-width:1119px){
+    #sp_my_item_order-box{
+      display:none;
+    }
+    #pc_my_item_order-box{
+      width:100%;
+      box-sizing:border-box;
+      #pc_my_item_order_title{
+        padding-left:2%;
+      }
+      #pc_my_item_name{
+        width:100%;
+        box-sizing:border-box;
+        display:flex;
+        border-top:2px solid #e2ddd4;
+        border-bottom:2px solid #e2ddd4;
+        padding-top:10px;
+        padding-bottom:10px;
+        background-color:#ffffff;
+        #pc_my_item_picture{
+          padding-left:2%;
+          width:25%;
+          a{
+            img{
+              width:100%;
+              box-sizing:border-box;
+              height:200px;
+            }
+          }
+        }
+        #pc_my_item_title{
+          padding-left:2%;
+          padding-right:2%;
+          width:75%;
+        }
+      }
+      #pc_my_item_order_table-box{
+        margin-top:20px;
+        width:100%;
+        box-sizing:border-box;
+        #pc_my_item_order_table{
+          width:96%;
+          padding-left:2%;
+          padding-right:2%;
+          table{
+            width:100%;
+            box-sizing:border-box;
+            thead{
+              background-color:#f6f2eb;
+              color:#887f69;
+              border:solid 1px #e2ddd4;
+              
+              th{
+                text-align:center;
+              }
+              
+            }
+            tbody{
+              background-color:#ffffff;
+              #pc_my_item_table_order_number{
+                background-color:#f6f2eb;
+                color:#887f69;
+              }
+              th{
+                text-align:center;
+                
+                #pc_my_item_order_detail_button{
+                  width:124px;
+                }
+                #watch_my_customer_button{
+                  margin-top:5px;
+                  display: block;
+                  background-color: #887f69;
+                  border-width:1px;
+                  padding-right:5px;
+                  text-align:center;
+                  width:120px;
+                  padding-right:2px;
+                  padding-left:2px;
+                  margin-right:5px;
+                  position:relative;
+                  a{
+                    position:absolute;
+                    width:120px;
+                    padding-right:2px;
+                  padding-left:2px;
+                    height:100%;
+                  text-decoration: none;
+                  color: #ffffff;
+                  font-size:16px;
+                  padding-top:8px;
+                  display:block;
+                  
+                  }
+                  border-radius:5px;
+                  min-width:120px;
+                  // width:100%;
+                  height:40px;
+              }
+             #watch_my_customer_button:hover{
+              background-color:#9d1a2d;
+            }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(max-width:1118px){
+    #pc_my_item_order-box{
+      display:none;
+    }
+    #sp_my_item_order-box{
+      width:100%;
+      box-sizing:border-box;
+      #sp_my_item_order_title{
+        padding-left:2%;
+      }
+      #sp_my_item_name{
+        width:100%;
+        box-sizing:border-box;
+        display:flex;
+        border-top:2px solid #e2ddd4;
+        border-bottom:2px solid #e2ddd4;
+        padding-top:10px;
+        padding-bottom:10px;
+        background-color:#ffffff;
+        #sp_my_item_picture{
+          padding-left:2%;
+          width:25%;
+          min-width:150px;
+          a{
+            img{
+              width:100%;
+              box-sizing:border-box;
+              height:120px;
+            }
+          }
+        }
+        #sp_my_item_title{
+          padding-left:2%;
+          padding-right:2%;
+          width:75%;
+        }
+      }
+      #sp_my_item_order_columns-box{
+        width:100%;
+        box-sizing:border-box;
+        margin-top:20px;
+        #sp_my_item_order_column{
+          padding-top:10px;
+          padding-bottom:10px;
+          width:96%;
+          padding-left:2%;
+          padding-right:2%;
+          background-color:#ffffff;
+          display:flex;
+          border:2px solid #887f69;
+          border-radius:5px;
+          margin-bottom:10px;
+          #sp_my_item_order_column-information{
+            width:70%;
+            box-sizing:border-box;
+          }
+          #sp_my_item_order_column-status{
+            width:30%;
+            #sp_my_item_order_column_status-box{
+              width:100%;
+              
+              border-radius:5px;
+              height:40px;
+              text-align:center;
+              padding-top:5px;
+              p{
+                font-size:20px;
+                color:#ffffff;
+              }
+            }
+            #sp_my_item_order_column_payment{
+              @media(max-width:705px){
+              font-size:12px;
+              }
+              width:100%;
+              text-align:center;
+            }
+          }
+        }
+      }
+    }
+  }
+  // ****サイドメニュー****
+  // 検索
+  @media(min-width:550px){
+    #searchform {  
+      
+      // width: 219px;  
+      display: block;  
+      height: 92px;  
+      position: relative;
+      background-color:#ffffff;
+      margin:0;
+      #search_name {
+      top:19px;
+      left:12px;
+      position:absolute;
+      }
+    } 
+    #keywords {  
+        // width: 178px;
+        width:90%;
+        box-sizing:border-box;
+        height:30px;
+        position: absolute;  
+        top: 42px;  
+        left: 12px;  
+        border: 1px solid #FFF;
+        background-color:#eeeeee;
+    }  
+    #searchBtn {  
+        position: absolute;  
+        top: 47px;  
+        left: 85%;
+        box-sizing:border-box;
+        // width:16px;
+        height:16px;
+        background-color:#eeeeee;
+    }
+  }
+  @media(max-width:549px){
+      #searchform{
+        margin:0;
+        padding-top:20px;
+        #search_name{
+          display:none;
+        }
+        #keywords{
+          
+          margin-left:15px;
+          margin-right:15px;
+          padding-right:5%;
+          width:91%;
+          box-sizing:border-box;
+          height:30px;
+          background-color:#eeeeee;
+        }
+        #searchBtn{
+          left:89%;
+          box-sizing:border-box;
+          position:absolute;
+          margin-top:8px;
+        }
+      }
+  }
+  
+  // 【サイドメニュー】ページリンク
+  // PC
+  @media(min-width:550px){
+    #pagelink{
+      background-color:#887f69;
+      margin:0;
+      height:45px;
+      box-sizing:border-box;
+      position:relative;
+      display:block;
+      p{
+        margin:0;
+        #pagelink-image{
+        padding-top:17px;
+        padding-left:7%;
+        position:absolute;
+        }
+        #nexticon-image{
+          padding-top:17px;
+          padding-left:95%;
+          position:absolute;
+        }
+      }
+    }
+  }
+   // スマホ
+  @media(max-width:549px){
+    #pagelink{
+      margin:0;
+      background-color:#887f69;
+      height:40px;
+      box-sizing:border-box;
+      position:relative;
+      display:block;
+    }
+    p{
+      margin:0;
+      #pagelink-image{
+        margin-left:15px;
+        margin-top:13px;
+        position:absolute;
+        box-sizing:border-box;
+      }
+      #nexticon-image{
+        margin-top:13px;
+        margin-left:97%;
+      }
+    }
+  }
+  // 【サイドメニュー】お知らせなど
+  @media(min-width:550px){
+    #about{
+      background-color:#887f69;
+      margin:0;
+      height:45px;
+      box-sizing:border-box;
+      position:relative;
+      display:block;
+      margin-top:10px;
+    }
+    p{
+        margin:0;
+        #about-image{
+        padding-top:17px;
+        padding-left:7%;
+        position:absolute;
+        }
+      }
+     // 記事
+    #article{
+      margin-top:10px;
+      background-color:#ffffff;
+      padding:0;
+      #articleimage-box{
+        margin:0;
+        box-sizing:border-box;
+        position:relative;
+        display:block;
+      }
+      #moreButton-box{
+          margin-top:10px;
+          a{
+          padding-left:23%;
+          padding-right:23%;
+          box-sizing:border-box;
+          position:relative;
+          }
+          img{
+             width:54%;
+             box-sizing:border-box;
+          }
+        }
+    }
+  }
+  @media(max-width:549px){
+    #about{
+      margin-top:10px;
+      background-color:#887f69;
+      height:40px;
+      box-sizing:border-box;
+      position:relative;
+      display:block;
+    }
+    p{
+      margin:0;
+      #about-image{
+        margin-left:15px;
+        margin-top:15px;
+        position:absolute;
+        box-sizing:border-box;
+      }
+    }
+    #article{
+      margin-top:10px;
+      background-color:#ffffff;
+      padding:0;
+      #article-box{
+        #articleimage-box{
+          margin:0;
+          padding:0;
+          display:flex;
+          width:100%;
+          #article-image{
+            width:45%;
+            box-sizing:border-box;
+            padding-left:1%;
+            display:flex;
+          }
+          p{
+            padding-left:3%;
+            padding-right:2%;
+            width:48%;
+          }
+        }
+      }
+      #moreButton-box{
+        a{
+          padding-left:49%;
+        }
+      }
+    }
+  }
+  // 【サイドメニュー】SHOP INFO
+  @media(min-width:550px){
+    #shopinfo{
+      background-color:#887f69;
+      margin:0;
+      height:45px;
+      box-sizing:border-box;
+      position:relative;
+      display:block;
+      margin-top:10px;
+    }
+    p{
+      margin:0;
+      #shop_info-image{
+      padding-top:17px;
+      padding-left:7%;
+      position:absolute;
+      }
+    }
+  }
+   @media(max-width:549px){
+    #shopinfo{
+      margin-top:10px;
+      background-color:#887f69;
+      height:40px;
+      box-sizing:border-box;
+      position:relative;
+      display:block;
+    }
+    p{
+      margin:0;
+      #shop_info-image{
+        margin-left:15px;
+        margin-top:15px;
+        position:absolute;
+        box-sizing:border-box;
+      }
+    }
+   }
+}
+// 【My Cartページ】pc用
+@media(max-width:549px){
+  #pc_cart_navi{
+    display:none;
+  }
+}
+@media(min-width:550px){
+  #pc_cart_navi{
+    padding-left:5%;
+    padding-right:5%;
+    width:90%;
+    // background-color:#f6f2eb;
+    background-color:#ffffff;
+    // background-color:f9f9f5;
+    padding-bottom:10px;
+    border:2px solid #887f69;
+    border-radius:5px;
+    margin-bottom:10px;
+    p{
+      color:#f24e69;
+        .price_count{
+          color:black;
+        }
+      }
+    #pc_cart_button-box{
+        width:94%;
+        margin-right:3%;
+        margin-left:3%;
+        
+        box-sizing:border-box;
+        #pc_cart_button{
+          width:100%;
+          text-align:center;
+          padding-top:3px;
+          box-sizing:border-box;
+          display:block;
+          text-decoration:none;
+          background-color:#9d1a2d;
+          color:#ffffff;
+          height:40px;
+          font-size:20px;
+          border-radius:5px;
+          margin-bottom:10px;
+        }
+        #pc_cart_button:hover{
+          background-color:#f24e69;
+        }
+      }
+    }
+  }
+footer{
+  #footer_top{
+    @media(min-width:550px){
+      text-align:right;
+    }
+    @media(max-width:549px){
+      text-align:center;
+    }
+    border-bottom:3px solid $font-color;
+    height:25px
+    
+  }
+  #footer_list{
+    text-align:center;
+    margin-top:10px;
+    margin-bottom:10px;
+    height:20px;
+    li{
+      display:inline-block;
+      padding-right:5px;
+      color:$font-color;
+      border-right:1px solid $font-color;
+    }
+  }
+  p{
+      color:#e2ddd4;
+      
+      text-align:center;
+  }
+}
+@media(max-width:549px){
+  #footer_list{
+    display:none;
+  }
+}
