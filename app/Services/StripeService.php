@@ -50,7 +50,7 @@ class StripeService
         \Stripe\Stripe::setApiKey($stripeApiKey);
         \Log::info('webhook point3');
         // You can find your endpoint's secret in your webhook settings
-        $endpoint_secret = 'whsec_2tIV0Y7yFErtzyvYtEl444jKMmCD2q1r';
+        $endpoint_secret = 'whsec_Jie2g9nkAHg9yr32FazPmXzWKhyz8E60';
         $payload = @file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
         $event = null;
