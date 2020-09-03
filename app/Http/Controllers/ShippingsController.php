@@ -176,9 +176,10 @@ class ShippingsController extends Controller
         return view('users.myOrder', $data);
     }
     
-    //webhock機能
+    //webhook機能
     public function webhook(){
-        \Log::info('aaaaa');
+        \Log::info('webhook point1');
+        print('point1');
         StripeService::webhook();
     }
     

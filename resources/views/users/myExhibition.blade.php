@@ -48,8 +48,9 @@
             {{ $my_items->links() }}
             
             </div>
-        </div>
         @else
         <p>出品していません。</p>
         @endif
+        </div>
+        
 @endsection

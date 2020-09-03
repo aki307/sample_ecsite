@@ -2,7 +2,7 @@
 
 @section('content')
     @if(!empty($session_id))
-    <h2>注文確定しました</h2>
+    <h2>クレジットカード払い</h2>
     <div class="text-center">
         <div class="card">
             {{ $session_id }}
@@ -20,12 +20,12 @@
         </div>
     </div>
     @else
-    <h2>注文確定しました２</h2>
+    <h2>注文確定しました</h2>
     
     <div class="text-center">
         <div class="card">
             <h5 class="card-text">
-                
+                <p>注文ありがとうございます</p>
             </h5>
         </div>
     </div>
