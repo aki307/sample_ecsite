@@ -76,6 +76,7 @@
                 <p style="text-align:right;"><a href="{!! route('myItemOrderDetail', ['id' => $my_item_status[$i]->id]) !!}"><i class="fas fa-angle-right" style="color:#887f69; font-size:80px;"></i></a></p>
               </div>
             </div>
+            </div>
             @endfor
           </div>
         </div>

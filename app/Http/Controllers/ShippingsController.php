@@ -178,8 +178,6 @@ class ShippingsController extends Controller
     
     //webhook機能
     public function webhook(){
-        \Log::info('webhook point1');
-        print('point1');
         StripeService::webhook();
     }
     

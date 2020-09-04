@@ -76,13 +76,13 @@
               </div>
               <div id="sp_my_item_order_column-status">
                 <!--phpの条件分岐で対応する-->
-                @if($shipping_items[$i]-> money_transfer===1)
+                @if($shipping_items[$i]-> money_transfer===2)
                 <div id="sp_my_item_order_column_status-box" style="background-color:#887f69;">
                   <p>支払済み</p>
                 </div>
                 @else
                 <div id="sp_my_item_order_column_status-box" style="background-color:#9d1a2d;">
-                  @if($shipping_items[$i]-> money_transfer ===2)
+                  @if($shipping_items[$i]-> money_transfer ===1)
                   <p>支払待ち</p>
                   @elseif($shipping_items[$i]-> money_transfer ===3)
                   <p>支払予定</p>
@@ -92,6 +92,7 @@
                 <p id="sp_my_item_order_column_payment">（{!! config('payment')[$shippings[$i]-> payment] !!}）</p>
                 <p style="text-align:right;"><a href="{!! route('myItemOrderDetail', ['id' => $shipping_items[$i]->id]) !!}"><i class="fas fa-angle-right" style="color:#887f69; font-size:80px;"></i></a></p>
               </div>
+            </div>
             </div>
             @endfor
           </div>
