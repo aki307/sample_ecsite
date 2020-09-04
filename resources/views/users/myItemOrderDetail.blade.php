@@ -9,12 +9,12 @@
                 <div id="pc_my_address">
                     <p id="title">お届け先住所</p>
                     <p>{!! $customer->name_kanji !!}</p>
-                    <p>{!! $shipping->shipping_xmpf !!}</p>
+                    <p>{!! config('pref')[$shipping->shipping_xmpf] !!}</p>
                     <p>{!! $shipping->shipping_address1 !!} {!! $shipping->shipping_address2 !!}</p>
                 </div>
               <div id="pc_my_payment">
                   <p id="title">支払方法</p>
-                  <p>クレジットカード払い</p>
+                  <p>{!! config('payment')[$shipping->payment] !!}</p>
                 </div>
                 <div id="payment">
                   <p id="title">領収書/詳細明細書 </p>
@@ -92,7 +92,7 @@
               <div id="sp_my_payment_address">
                 <h5>請求先住所</h5>
                 <!--郵便番号-->
-                <p>{{ $shipping->shipping_xmpf }}</p>
+                <p>{{ config('pref')[$shipping->shipping_xmpf] }}</p>
                 <!--住所-->
                 <p>{{ $shipping->shipping_address1 }} {{ $shipping->shipping_address2 }}</p>
               </div>
@@ -104,7 +104,7 @@
               <!--お名前-->
               <h5>{{ $customer->name_kanji }}</h5>
               <!--郵便番号-->
-              <p>{{ $shipping->shipping_xmpf }}</p>
+              <p>{{ config('pref')[$shipping->shipping_xmpf] }}</p>
               <!--住所-->
               <p>{{ $shipping->shipping_address1 }} {{ $shipping->shipping_address2 }}</p>
             </div>
