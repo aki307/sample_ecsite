@@ -29,7 +29,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::post('webhook', 'ShippingsController@webhook');
 
 // 【クレジット決済成功ルート】
-       Route::get('creditComplete','ShippingsController@creditComplete');
+       Route::post('creditComplete','ShippingsController@creditComplete');
 //ログインしないと利用できない機能
 Route::group(['middleware' => ['auth']], function (){
     //商品登録機能
