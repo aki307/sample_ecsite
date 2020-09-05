@@ -195,7 +195,7 @@ class ShippingsController extends Controller
     // 【クレジット決済成功時】
     public function creditComplete()
     {   
-        dd(url()->previous());
+        
         return view('users.credit_complete');
     }
 }
