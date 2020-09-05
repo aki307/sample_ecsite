@@ -34,7 +34,8 @@ class StripeService
           'line_items' => $line_items,
           'mode' => 'payment',
           
-          'success_url' => 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+          // 'success_url' => 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+          'success_url' => 'https://aki-sample-ecsite.herokuapp.com/creditComplete',
           'cancel_url' => 'https://example.com/cancel',
         ]);
         return $session->id;
