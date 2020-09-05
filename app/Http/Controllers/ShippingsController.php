@@ -192,4 +192,10 @@ class ShippingsController extends Controller
             ];
         return view('users.myOrderDetail', $data);
     }
+    // 【クレジット決済成功時】
+    public function creditComplete()
+    {   
+        dd(url()->previous());
+        return view('users.credit_complete');
+    }
 }

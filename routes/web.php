@@ -28,6 +28,8 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //Webhook機能
 Route::post('webhook', 'ShippingsController@webhook');
 
+// 【クレジット決済成功ルート】
+       Route::get('creditComplete','ShippingsController@creditComplete');
 //ログインしないと利用できない機能
 Route::group(['middleware' => ['auth']], function (){
     //商品登録機能
@@ -36,7 +38,10 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('registerItemComplete', 'ItemsController@registerItemComplete')->name('registerItem.complete');
     //検索機能
     Route::get('searchItem', 'ItemsController@searchItem')->name('searchItem');
-    
+    // 【クレジット決済成功ルート】
+       Route::get('creditComplete',function(){
+           return view('users.credit_complete');
+       });
     
     Route::group(['prefix' => 'users/{id}'], function(){
         //カートの中身を表示する
