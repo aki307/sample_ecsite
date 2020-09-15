@@ -22,7 +22,7 @@ class StripeService
         ]);
     }
     //チェックアウトセッションの作成
-    public function createCheckoutSession($line_items)
+    public function createCheckoutSession($shipping_id, $line_items)
     {
         
         
@@ -35,8 +35,10 @@ class StripeService
           'mode' => 'payment',
           
           // 'success_url' => 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-          'success_url' => 'https://aki-sample-ecsite.herokuapp.com/creditComplete',
-          'cancel_url' => 'https://example.com/cancel',
+          // 'success_url' => 'https://719b9230c63140f18ad17fc26e8124c1.vfs.cloud9.us-east-1.amazonaws.com' . '/creditComplete?session_id={CHECKOUT_SESSION_ID}',
+          'success_url' => config('my-app.success_url') . '/creditComplete?session_id={CHECKOUT_SESSION_ID}',
+          'cancel_url' => config('my-app.success_url') . '/shippings/' . $shipping_id . '/myOrderDetail',
+          // 'cancel_url' => 'https://719b9230c63140f18ad17fc26e8124c1.vfs.cloud9.us-east-1.amazonaws.com' . '/shippings/' . $shipping_id . '/myOrderDetail',
         ]);
         return $session->id;
     }
@@ -74,6 +76,13 @@ class StripeService
           $shipping->shippingItems()->update(['money_transfer' => 2]);
         }
         http_response_code(200);
+    }
+    // セッションの取得
+    public function retrieveSession($stripe_id){
+      $stripeApiKey = config('my-app.stripe-apiKey');
+      $stripe = new \Stripe\StripeClient($stripeApiKey);
+      $stripe_session = $stripe->checkout->sessions->retrieve($stripe_id,[]);
+      return $stripe_session->payment_status;
     }
 }
 

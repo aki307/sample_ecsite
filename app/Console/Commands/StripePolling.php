@@ -57,9 +57,13 @@ class StripePolling extends Command
         
         foreach ($events->autoPagingIterator() as $event) {;
           $session = $event->data->object;
-          
           $shipping = Shipping::where('stripeid', $session->id)->first();
+          
+          if(is_null($shipping)){
+            continue;
+          }else{
           $shipping->shippingItems()->update(['money_transfer' => 2]);
+          }
           // $shipping_items = $shipping->shippingItems()->get();
           // $shipping_items->money_transfer = 2;
         }

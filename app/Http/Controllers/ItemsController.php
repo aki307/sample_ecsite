@@ -188,6 +188,7 @@ class ItemsController extends Controller
     }
     // 各商品の注文一覧(出品一覧から)
     public function orderMyItem($item_id){
+
         $item = Item::find($item_id);
         $shipping_items = $item-> shipping_items()->get();
         // $shippings = Shipping::whereIn('id',  $shipping_items->pluck('shipping_id'))->get();
@@ -206,6 +207,9 @@ class ItemsController extends Controller
             'shippings' => $shippings,
             'users' => $users,
             ];
+
+        
+        //dd("test");
         
         return view('users.myItemOrder', $data);
     }

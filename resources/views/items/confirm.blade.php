@@ -102,26 +102,26 @@
             
                 <table class="table table-bordered">
                     <tr>
-                        <td>商品名:</td>
-                        <td class="text-left">{{ $data['item_name'] }}</td>
+                        <td id="item_confirm_table_left">商品名:</td>
+                        <td class="text-center">{{ $data['item_name'] }}</td>
                     </tr>
                     <tr>
-                        <td>定価：</td>
-                        <td class="text-left">{{ $data['list_price'] }}</td>
+                        <td id="item_confirm_table_left">定価：</td>
+                        <td class="text-center">{{ $data['list_price'] }}</td>
                     </tr>
                     <tr>
-                        <td>売値：</td>
-                        <td class="text-left"> {{ $data['sale_price'] }}</td>
+                        <td id="item_confirm_table_left">売値：</td>
+                        <td class="text-center"> {{ $data['sale_price'] }}</td>
                     </tr>
                     <tr>
-                        <td>メイン画像：</td>
-                        <td class="text_left"><img src="{{ $data['item_image'] }}" width="200" height="130"></td>
+                        <td id="item_confirm_table_left">メイン画像：</td>
+                        <td class="text_center"><img src="{{ $data['item_image'] }}" width="200" height="130"></td>
                     </tr>
                     @if(@empty($data['sub_item_images']))
                     @else
                     <tr>
-                        <td>サブ画像：</td>
-                        <td class="text-left">
+                        <td id="item_confirm_table_left">サブ画像：</td>
+                        <td class="text-center">
                             @foreach($data['sub_item_images'] as $sub_item_image)
                             <img src="{{ $sub_item_image }}" width="200" height="130">
                             @endforeach
@@ -129,13 +129,13 @@
                     </tr>
                     @endif
                     <tr>
-                        <td>商品の説明</td>
-                        <td class="text_left">{{ $data['description'] }}</td>
+                        <td id="item_confirm_table_left">商品の説明</td>
+                        <td class="text_center">{{ $data['description'] }}</td>
                     </tr>
                 </table>
                
 
-            {!! Form::submit('利用規約に同意して、登録する', ['class' => 'btn btn-primary btn-block']) !!}
+            {!! Form::submit('利用規約に同意して、登録する', ['class' => 'btn btn-primary btn-block', 'id' => 'item_confirm_submit']) !!}
         {!! Form::close() !!}
         </div>
     </div>

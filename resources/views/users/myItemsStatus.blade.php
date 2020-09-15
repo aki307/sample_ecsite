@@ -50,7 +50,7 @@
           <div id="sp_my_item_order_columns-box">
             <div id="sp_my_item_order_column">
               <div id="sp_my_item_order_column-information">
-                <h4><i class="fas fa-user" style="color:#887f69; padding-right:2%"></i>{{ $my_item_status[$i]->item->user->name_kanji }}</h4>
+                <h4><i class="fas fa-user" style="color:#887f69; padding-right:2%"></i>{{ $my_item_status[$i]->shipping->user->name_kanji }}</h4>
                 <p>{{ $my_item_status[$i]->created_at->format('Y/m/d') }}に注文しました</p>
                 <p>商品名:{{ $my_item_status[$i]->item->item_name }}</p>
                 <p>個数：{{ $my_item_status[$i]->quantity }}</p>

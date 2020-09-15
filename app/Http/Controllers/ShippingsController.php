@@ -11,6 +11,7 @@ use App\Shipping;
 use App\ShippingItem;
 use Illuminate\Support\Facades\DB;
 use StripeService;
+use Illuminate\Support\Carbon;
 
 class ShippingsController extends Controller
 {
@@ -77,28 +78,28 @@ class ShippingsController extends Controller
     }
     public function register(Request $request, $id)
     {   
-        if(\Auth::check()){
-            $user_id = \Auth::id();
-            $user = \Auth::user();
-            $session = $request->session()->get('shipping');
-            $payment = $session['payment'];
-            $shipping_xmpf = $session['xmpf'];
-            $shipping_address1 = $session['address1'];
-            $shipping_address2 = $session['address2'];
+        
+        $user_id = \Auth::id();
+        $user = \Auth::user();
+        $session = $request->session()->get('shipping');
+        $payment = $session['payment'];
+        $shipping_xmpf = $session['xmpf'];
+        $shipping_address1 = $session['address1'];
+        $shipping_address2 = $session['address2'];
             
-            $my_carts = $user->cart()->get();
+        $my_carts = $user->cart()->get();
             
-            DB::beginTransaction();
-            try{
-                $shipping = Shipping::create([
-                    'user_id' => $user_id,
-                    'payment' => $payment,
-                    'shipping_xmpf' => $shipping_xmpf,
-                    'payment_state' => '1',
-                    'shipping_address1' => $shipping_address1,
-                    'shipping_address2' => $shipping_address2
-                ]);
-                foreach($my_carts as $my_cart){
+        DB::beginTransaction();
+        try{
+            $shipping = Shipping::create([
+                'user_id' => $user_id,
+                'payment' => $payment,
+                'shipping_xmpf' => $shipping_xmpf,
+                'payment_state' => '1',
+                'shipping_address1' => $shipping_address1,
+                'shipping_address2' => $shipping_address2
+            ]);
+            foreach($my_carts as $my_cart){
                 $item_id = $my_cart->id;
                 $quantity = $my_cart->pivot->number;
                 $sale_price = $my_cart->sale_price;
@@ -107,9 +108,12 @@ class ShippingsController extends Controller
                     'quantity' => $quantity,
                     'sale_price' => $sale_price,
                     'shipping_id' => $shipping->id,
-                    'money_transfer' => '1',
+                    'money_transfer' => '3',
                     'delivery_status' => '1'
                 ]);
+                // カート削除機能
+                $item_id = $my_cart->pivot->item_id;
+                $user->removeToCart($item_id);
             }
                 DB::commit();
             }catch(\Exception $e){
@@ -130,12 +134,19 @@ class ShippingsController extends Controller
                       'price_data' => ['currency'=>'jpy', 'product' => 'ec-item-'.$shipping_item->item->id, 'unit_amount' => $shipping_item->sale_price],
                       'quantity'   => $shipping_item->quantity,
                         ];
+                        $shipping_item->money_transfer=1;
+                        $shipping_item->save();
                     }
-                    $session_id = StripeService::createCheckoutSession($line_items);
+                    $shipping_id = $shipping->id;
+                    $session_id = StripeService::createCheckoutSession($shipping_id, $line_items);
                     
                     // 受け取ったsessionからsessionidを$shippingに代入して、save()
                     $shipping = Shipping::find($shipping->id);
                     $shipping->stripeid = $session_id;
+                    // セッションidの期限
+                    $time = new Carbon(Carbon::now());
+                    $session_time = $time->addHours(23);
+                    $shipping->stripeid_time = $session_time;
                     
                     $shipping->save();
                     
@@ -145,13 +156,7 @@ class ShippingsController extends Controller
                     dd($e->getMessage());
                     DB::rollback();
             }
-        }else{
-            return false;
-        }
-        foreach($my_carts as $my_cart){
-            $item_id = $my_cart->id;
-            $user->removeToCart($item_id);
-        }
+        
         
         // TODO: Stripeのセッションなどをviewに渡し、決済ボタンに必要なデータをすべて渡してあげましょう。
         // TODO: viewの方で、決済ボタンを作って、ボタンを押したら、stripeの決済APIを呼ぶようにしましょう。
@@ -186,16 +191,75 @@ class ShippingsController extends Controller
         $shipping = Shipping::find($shipping_id);
         $shipping_items = $shipping->shippingItems()->get();
         
+        // クレジットカードかつ未払の場合の処理
+        if($shipping->payment==1){
+            if($shipping_items[0]->money_transfer==1){
+                
+                // 対象の注文の最新情報を取得する(支払っている確認が取れたら更新する)
+                $stripe_payment_state = StripeService::retrieveSession($shipping->stripeid);
+                $paid = 'paid';
+                if($stripe_payment_state===$paid){
+                    foreach($shipping_items as $shipping_item){
+                        $shipping_item->money_transfer=2;
+                        $shipping_item->save();
+                    }
+                }
+                // 対象の注文のセッションが期限切れなら更新する
+                if(strtotime(date('Y-m-d H:i:s')) > strtotime(date($shipping->stripeid_time))){
+                    $line_items = [];
+                        foreach($shipping_items as $shipping_item){
+                            $line_items[] = [
+                          'price_data' => ['currency'=>'jpy', 'product' => 'ec-item-'.$shipping_item->item->id, 'unit_amount' => $shipping_item->sale_price],
+                          'quantity'   => $shipping_item->quantity,
+                            ];
+                        }
+                        $session_id = StripeService::createCheckoutSession($shipping_id, $line_items);
+                        
+                        // 受け取ったsessionからsessionidを$shippingに代入して、save()
+                        $shipping = Shipping::find($shipping->id);
+                        $shipping->stripeid = $session_id;
+                        // セッションidの期限
+                        $session_time = Carbon::now()->addHours(23);
+                        $shipping->stripeid_time = $session_time;
+                        
+                        $shipping->save();
+                // もし更新でなくてもセッションを渡す
+                }else{
+                    $session_id = $shipping->stripeid;
+                }
+            }else{
+                $session_id = null;
+            }
+        }else{
+            $session_id = null;
+        }
         $data =[
             'shipping' => $shipping,
             'shipping_items' => $shipping_items,
+            'session_id' => $session_id,
             ];
         return view('users.myOrderDetail', $data);
     }
     // 【クレジット決済成功時】
     public function creditComplete()
     {   
-        
         return view('users.credit_complete');
+    }
+    // 支払方法の変更
+    public function paymentChange(Request $request, $shipping_id){
+        $shipping = Shipping::find($shipping_id);
+        
+        $shipping->payment = $request->payment;
+        $shipping->save();
+        $shipping_items = $shipping->shippingItems()->get();
+        foreach($shipping_items as $shipping_item){
+            if($shipping_item->payment !==1){
+                $shipping_item->money_transfer =3;
+            }else{
+                $shipping_item->money_transfer = 1;
+            }
+            $shipping_item->save();
+            }
+        return back();
     }
 }

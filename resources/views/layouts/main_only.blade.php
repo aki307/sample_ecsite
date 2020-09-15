@@ -14,6 +14,7 @@
   
   <link rel="stylesheet" href="{{ asset('/css/all.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <script src="https://js.stripe.com/v3/"></script>
   <!-- Favicon
   -------------------------------------------------- -->
   <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">

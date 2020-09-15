@@ -1127,6 +1127,19 @@ body {
           p{
             font-size:14px;
           }
+          // 【支払変更仕様】
+          #paymentChangeSelect{
+            max-width:100%;
+            box-sizing:border-box;
+            padding-left:2%;
+            padding-right:2%;
+          }
+          #paymentChangeSubmit{
+            color:#ffffff;
+            background-color:#887f69;
+            padding-left:5px;
+            padding-right:5px;
+          }
         }
         #payment{
           padding-top:5px;
@@ -1249,9 +1262,29 @@ body {
           padding-top:10px;
           padding-bottom:10px;
           border-bottom:1px solid #e2ddd4;
+          form{
+            margin-bottom:0;
+          }
           h5{
             margin:0;
             font-weight:700;
+          }
+          // 【支払変更仕様】
+          #paymentChangeSelect{
+            max-width:100%;
+            box-sizing:border-box;
+            padding-left:10px;
+            padding-right:10px;
+            height:50px;
+            font-size:16px;
+          }
+          #paymentChangeSubmit{
+            color:#ffffff;
+            background-color:#887f69;
+            padding-left:10px;
+            padding-right:10px;
+            height:50px;
+            font-size:16px;
           }
         }
         #sp_my_payment_address{
@@ -1948,4 +1981,66 @@ footer{
   #footer_list{
     display:none;
   }
+}
+
+
+// 【クレジット決済用】
+#credit-information{
+  border:#9d1a2d solid 5px; 
+  background-color:#ffffff;
+  text-align:center;
+  margin-bottom:15px;
+  #credit_payment_button-box{
+    text-align:center;
+    margin-bottom:5px;
+    #credit_payment_button{
+      border-radius:5px;
+      min-width:120px;
+      height:40px;
+      margin-top:5px;
+      display: block;
+      margin-left:auto;
+      margin-right:auto;
+      background-color: #9d1a2d;
+      border-width:1px;
+      padding-right:5px;
+      text-align:center;
+      width:120px;
+      padding-right:2px;
+      padding-left:2px;
+      position:relative;
+      a{
+        position:absolute;
+        width:120px;
+        padding-right:2px;
+        padding-left:2px;
+        height:100%;
+        text-decoration: none;
+        color: #ffffff;
+        padding-top:8px;
+        display:block;
+        font-size:18px;
+      }
+      a:hover{
+        background-color:#f24e69;
+        box-sizing:border-box;
+        width:100%;
+        height:100%;
+        border-radius:5px;
+        left:0%;
+      }
+    }
+  }
+}
+#item_confirm_submit{
+  background-color:#9d1a2d;
+  color:#ffffff;
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+  
+}
+#item_confirm_table_left{
+  
+  width:90px;
 }

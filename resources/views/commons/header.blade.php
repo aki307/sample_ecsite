@@ -6,10 +6,14 @@
           <!--<img src="{{ asset('images/top_sp/logo.png') }}">-->
         </div>
         <div class="six columns" id="header-right">
+          <?php
+            $top_url = url('');
+            $facebook_share_url = 'https://www.facebook.com/sharer.php?src=bm&u=' . $top_url;
+          ?>
           <div class="sp_navi">
             <ul class="sp_navi_li">
-              <li><img src="{{ asset('images/top_sp/fb.png') }}"></li>
-              <li><img src="{{ asset('images/top_sp/insta.png') }}"></li>
+              <li><a href="{{ $facebook_share_url }}"><img src="{{ asset('images/top_sp/fb.png') }}"></a></li>
+              <!--<li><a><img src="{{ asset('images/top_sp/insta.png') }}"></a></li>-->
               <li id="sp_navi_toggle"><img src="{{ asset('images/top_sp/menu_icon.png') }}" ></li>
             </ul>
             <ul class="sp_navi_toggle">
@@ -38,8 +42,8 @@
               <li>{!! link_to_route('signup.get', '登録する', []) !!}</li>
               <li>{!! link_to_route('login', 'ログイン', []) !!}</li>
               @endif
-              <li><img src="{{ asset('images/top/facebook.png') }}"></li>
-              <li><img src="{{ asset('images/top/insta.png') }}"></li>
+              <li><a href="{{ $facebook_share_url }}"><img src="{{ asset('images/top/facebook.png') }}"></a></li>
+              <!--<li><a><img src="{{ asset('images/top/insta.png') }}"></a></li>-->
             </ul>
         </div>
       </div>

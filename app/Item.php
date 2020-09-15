@@ -17,7 +17,7 @@ class Item extends Model
     
     public function cart()
     {
-        return $this->belongsToMany(Item::class, 'user_cart', 'item_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_cart', 'item_id', 'user_id')->withTimestamps();
     }
     
     public function itemImages()

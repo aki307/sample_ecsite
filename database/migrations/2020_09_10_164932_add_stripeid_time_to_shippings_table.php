@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MakeStripeidNullableInShippingsTable extends Migration
+class AddStripeidTimeToShippingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class MakeStripeidNullableInShippingsTable extends Migration
     public function up()
     {
         Schema::table('shippings', function (Blueprint $table) {
-            $table->string('stripeid')->nullable()->change();
+            $table->dateTime('stripeid_time')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class MakeStripeidNullableInShippingsTable extends Migration
     public function down()
     {
         Schema::table('shippings', function (Blueprint $table) {
-            $table->dropColumn('stripeid');
+            $table->dropColumn('stripeid_time');
         });
     }
 }

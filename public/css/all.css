@@ -1753,6 +1753,21 @@ body .search_progress-box ul:after {
     font-size: 14px;
   }
 
+  body #pc_my_orders_detail-box #pc_my_order_detail_information #pc_my_payment #paymentChangeSelect {
+    max-width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
+  body #pc_my_orders_detail-box #pc_my_order_detail_information #pc_my_payment #paymentChangeSubmit {
+    color: #ffffff;
+    background-color: #887f69;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
   body #pc_my_orders_detail-box #pc_my_order_detail_information #payment {
     padding-top: 5px;
     width: 36%;
@@ -1907,9 +1922,32 @@ body .search_progress-box ul:after {
     border-bottom: 1px solid #e2ddd4;
   }
 
+  body #sp_my_orders_detail-box #sp_my_orders_detail_payment_information-box #sp_my_how_to_pay form {
+    margin-bottom: 0;
+  }
+
   body #sp_my_orders_detail-box #sp_my_orders_detail_payment_information-box #sp_my_how_to_pay h5 {
     margin: 0;
     font-weight: 700;
+  }
+
+  body #sp_my_orders_detail-box #sp_my_orders_detail_payment_information-box #sp_my_how_to_pay #paymentChangeSelect {
+    max-width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  body #sp_my_orders_detail-box #sp_my_orders_detail_payment_information-box #sp_my_how_to_pay #paymentChangeSubmit {
+    color: #ffffff;
+    background-color: #887f69;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    font-size: 16px;
   }
 
   body #sp_my_orders_detail-box #sp_my_orders_detail_payment_information-box #sp_my_payment_address {
@@ -2727,5 +2765,70 @@ footer p {
   #footer_list {
     display: none;
   }
+}
+
+#credit-information {
+  border: #9d1a2d solid 5px;
+  background-color: #ffffff;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#credit-information #credit_payment_button-box {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#credit-information #credit_payment_button-box #credit_payment_button {
+  border-radius: 5px;
+  min-width: 120px;
+  height: 40px;
+  margin-top: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #9d1a2d;
+  border-width: 1px;
+  padding-right: 5px;
+  text-align: center;
+  width: 120px;
+  padding-right: 2px;
+  padding-left: 2px;
+  position: relative;
+}
+
+#credit-information #credit_payment_button-box #credit_payment_button a {
+  position: absolute;
+  width: 120px;
+  padding-right: 2px;
+  padding-left: 2px;
+  height: 100%;
+  text-decoration: none;
+  color: #ffffff;
+  padding-top: 8px;
+  display: block;
+  font-size: 18px;
+}
+
+#credit-information #credit_payment_button-box #credit_payment_button a:hover {
+  background-color: #f24e69;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  left: 0%;
+}
+
+#item_confirm_submit {
+  background-color: #9d1a2d;
+  color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#item_confirm_table_left {
+  width: 90px;
 }
 

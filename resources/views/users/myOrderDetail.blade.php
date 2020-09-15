@@ -4,6 +4,28 @@
   <div id="my_orders_detail_title">
     <h4>注文の詳細</h4>
   </div>
+  @if($shipping->payment==1)
+    @if($shipping_items[0]->money_transfer==1)
+      <div id="credit-information">
+          <p><i class="far fa-check-square"></i>支払が完了していません。</p>
+          <div id="credit_payment_button-box">
+            <div id="credit_payment_button">
+              <a onclick="stripeCheckout();return false;">決済する</a>
+               <script>
+                // Stripeのチェックアウト処理を呼び出す関数 stripeCheckoutを定義
+                function stripeCheckout(){
+                    var stripe = Stripe("<?php echo config('my-app.stripePublicKey'); ?>");
+                        stripe.redirectToCheckout({
+                            sessionId: '{{ $session_id }}'
+                        }).then(function (result) {
+                    });
+                }
+                </script>
+            </div>
+          </div>
+        </div>
+    @endif
+  @endif
   <p>注文日: {!! $shipping->created_at->format('Y年m月d日') !!}</p>
   <div id="pc_my_order_detail_information">
     <div id="pc_my_address">
@@ -14,7 +36,23 @@
     </div>
     <div id="pc_my_payment">
       <p id="title">支払方法</p>
+      @if($shipping->payment==1)
+        @if($shipping_items[0]->money_transfer==1)
+          {{ Form::open(['route' => ['paymentChange', $shipping->id]]) }} 
+            {{ Form::select('payment', [
+            '1' => 'クレジットカード',
+            '2' => '代引き',
+            '3' => '銀行振込'],
+            $shipping->payment
+            , ['id'=> 'paymentChangeSelect']) }}
+            {{ Form::submit('更新', ['id'=> 'paymentChangeSubmit']) }}
+          {{ Form::close() }}
+        @else
+        <p>{{ config('payment')[$shipping->payment] }}</p>
+        @endif
+      @else
       <p>{{ config('payment')[$shipping->payment] }}</p>
+      @endif
     </div>
     <?php $total_money = 0; ?>
     @foreach($shipping_items as $shipping_item)
@@ -43,9 +81,11 @@
             </div>
           <div id="my_order_item_information">
             <p>{!! $shipping_item->item->item_name !!}</p>
+            @if($shipping_item->money_transfer !==1)
             <div id="buy_again_button">
               {!! link_to_route('item.show', '再購入する', ['id' => $shipping_item->item->id]) !!}
             </div>
+            @endif
           </div>
           <div id="my_order_item_price">
             <p>¥{!! $shipping_item->sale_price !!}</p>
@@ -60,6 +100,28 @@
   <div id="my_orders_detail_title">
     <h3>注文の詳細</h3>
   </div>
+  @if($shipping->payment==1)
+    @if($shipping_items[0]->money_transfer==1)
+      <div id="credit-information">
+          <p><i class="far fa-check-square"></i>支払が完了していません。</p>
+          <div id="credit_payment_button-box">
+            <div id="credit_payment_button">
+              <a onclick="stripeCheckout();return false;">決済する</a>
+               <script>
+                // Stripeのチェックアウト処理を呼び出す関数 stripeCheckoutを定義
+                function stripeCheckout(){
+                    var stripe = Stripe("<?php echo config('my-app.stripePublicKey'); ?>");
+                        stripe.redirectToCheckout({
+                            sessionId: '{{ $session_id }}'
+                        }).then(function (result) {
+                    });
+                }
+                </script>
+            </div>
+          </div>
+        </div>
+    @endif
+  @endif
   <div id="sp_my_order_abstract">
     <div id="sp_my_order_abstract_sub_title">
       <p>注文日：</p>
@@ -97,7 +159,23 @@
   <div id="sp_my_orders_detail_payment_information-box">
     <div id="sp_my_how_to_pay">
       <h5>支払方法</h5>
+      @if($shipping->payment==1)
+        @if($shipping_items[0]->money_transfer==1)
+          {{ Form::open(['route' => ['paymentChange', $shipping->id]]) }} 
+            {{ Form::select('payment', [
+            '1' => 'クレジットカード',
+            '2' => '代引き',
+            '3' => '銀行振込'],
+            $shipping->payment
+            , ['id'=> 'paymentChangeSelect']) }}
+            {{ Form::submit('更新', ['id'=> 'paymentChangeSubmit']) }}
+          {{ Form::close() }}
+        @else
+        <p>{{ config('payment')[$shipping->payment] }}</p>
+        @endif
+      @else
       <p>{{ config('payment')[$shipping->payment] }}</p>
+      @endif
     </div>
     <div id="sp_my_payment_address">
       <h5>請求先住所</h5>

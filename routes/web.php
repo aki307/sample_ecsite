@@ -86,5 +86,8 @@ Route::group(['middleware' => ['auth']], function (){
     // お客様自身が見る注文詳細ページ
     Route::group(['prefix' => 'shippings/{id}'], function(){
         Route::get('myOrderDetail', 'ShippingsController@myOrderDetail')->name('myOrderDetail');
+        
+        //支払方法の変更
+       Route::post('paymentChange', 'ShippingsController@paymentChange')->name('paymentChange');
     });
 });

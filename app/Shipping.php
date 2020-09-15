@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
 {
-    protected $fillable = ['user_id', 'payment', 'shipping_xmpf','shipping_address1', 'shipping_address2','payment_state','stripeid'];
+    protected $fillable = ['user_id', 'payment', 'shipping_xmpf','shipping_address1', 'shipping_address2','payment_state','stripeid', 'stripeid_time'];
     
     public function user()
     {

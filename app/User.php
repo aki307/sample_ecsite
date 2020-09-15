@@ -55,9 +55,10 @@ class User extends Authenticatable
         //既にカートに入っているかの確認
         $exist = $this->is_adding_to_cart($ItemId);
         
+        
         if($exist){
-            $this->cart()->detach($ItemId);
-            return true;
+            $this->cart()->withPivot('number')->detach($ItemId);
+            
         } else {
             return false;
         }
