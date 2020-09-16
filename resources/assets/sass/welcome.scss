@@ -2044,3 +2044,31 @@ footer{
   
   width:90px;
 }
+
+// 【支払確認画面】
+#payment_confirm_shipping_table{
+  width:100%; 
+  box-sizing:border-box;
+  margin-bottom:10px;
+  background-color:#ffffff;
+  #payment_confirm_shipping_table-title{
+    width:150px;
+    padding-right:0;
+  }
+  #payment_confirm_shipping_table-write{
+    text-align:center;
+  }
+ 
+}
+ #payment_confirm_how_to_pay{
+    box-sizing:border-box;
+    width:100%;
+    height:100%;
+    margin-bottom:10px;
+    h4{
+      margin:0;
+    }
+    p{
+      background-color:#ffffff;
+    }
+  }

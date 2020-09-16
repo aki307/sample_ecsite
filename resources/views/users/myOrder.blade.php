@@ -75,6 +75,9 @@
             @endforeach
             @endif
             @endforeach
+            @if(is_null($shippings))
+            <p>注文されていません。</p>
+            @endif
         </div>
         <div class="search_progress-box">
             {{ $shippings->links() }}

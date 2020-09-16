@@ -93,13 +93,16 @@ class ItemsController extends Controller
         //         $sub_image_paths[$i] = null;
         //     }
         // }
-        $sub_images = $request->file('item_images');
-        $sub_image_paths = [];
-        foreach($sub_images as $sub_image){
-            $sub_path = Storage::disk('s3')->putFile('myprefix', $sub_image, 'public');
-            $sub_image_paths[] = Storage::disk('s3')->url($sub_path);
+        if(isset($request->itemImages)){
+            $sub_images = $request->file('item_images');
+            $sub_image_paths = [];
+            foreach($sub_images as $sub_image){
+                $sub_path = Storage::disk('s3')->putFile('myprefix', $sub_image, 'public');
+                $sub_image_paths[] = Storage::disk('s3')->url($sub_path);
+            }
+        }else{
+            $sub_image_paths = [];
         }
-        
         if(\Auth::check()){
             $user_id = \Auth::id();
             $data = array(

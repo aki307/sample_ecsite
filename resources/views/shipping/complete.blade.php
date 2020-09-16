@@ -20,7 +20,7 @@
         </div>
     @else
     <div id="messages" style="border:#9d1a2d solid 5px; background-color:#ffffff;">
-        <p>クレジット決済完了しました。ありがとうございます。</p>
+        <p>ご注文承りました。ありがとうございます。</p>
     </div>
     @endif
 @endsection

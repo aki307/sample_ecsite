@@ -20,9 +20,17 @@ class ShippingsController extends Controller
         $prefs = config('pref');
         //ユーザーIDの処理
         $user_id = \Auth::id();
+        // 【追加機能】過去に購入していたらその入力データを反映する
+        // $user = \Auth::user();
+        // if(is_null($user->shippings()->latest()->get())){
+        //     $shipping = null;
+        // }else{
+        // $shipping = $user->shippings()->latest()->first();
+        // }
+        
         $data = array(
             'prefs' => $prefs,
-            'user'=> $user_id
+            'user'=> $user_id,
             );
         return view('shipping.form', $data);
     }

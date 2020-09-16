@@ -27,6 +27,12 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 //Webhook機能
 Route::post('webhook', 'ShippingsController@webhook');
+//検索機能
+    Route::get('searchItem', 'ItemsController@searchItem')->name('searchItem');
+    Route::group(['prefix' => 'items/{id}'], function() {
+        //商品詳細ページへ
+       Route::get('item', 'ItemsController@show')->name('item.show'); 
+    });
 
 // 【クレジット決済成功ルート】
        Route::post('creditComplete','ShippingsController@creditComplete');
@@ -36,8 +42,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('registerItem', 'ItemsController@index')->name('registerItem.get');
     Route::post('registerItemConfirm', 'ItemsController@registerItemConfirm')->name('registerItem.confirm');
     Route::post('registerItemComplete', 'ItemsController@registerItemComplete')->name('registerItem.complete');
-    //検索機能
-    Route::get('searchItem', 'ItemsController@searchItem')->name('searchItem');
+    
     // 【クレジット決済成功ルート】
        Route::get('creditComplete',function(){
            return view('users.credit_complete');
@@ -69,8 +74,6 @@ Route::group(['middleware' => ['auth']], function (){
     });
     
     Route::group(['prefix' => 'items/{id}'], function() {
-        //商品詳細ページへ
-       Route::get('item', 'ItemsController@show')->name('item.show'); 
        //カートに商品を入れる
        Route::get('addItemButton', 'UserCartController@add')->name('addItemButton');
        //各商品の個数を決める
